@@ -32,21 +32,21 @@ with st.expander('Analizar texto'):
         translation = translator.translate(text, src="es", dest="en")
         trans_text = translation.text
         blob = TextBlob(trans_text)
-        st.write('Polarity: ', round(blob.sentiment.polarity,2))
-        st.write('Subjectivity: ', round(blob.sentiment.subjectivity,2))
+        st.write('Polaridad: ', round(blob.sentiment.polarity,2))
+        st.write('Subjetividad: ', round(blob.sentiment.subjectivity,2))
         x=round(blob.sentiment.polarity,2)
         if x > 0.0 and x <=1.0:
-            st.write( 'Es un sentimiento Positivo 😊')
+            st.write( 'El robot de divinal inteligencia detecto que escribiste algo positivo 😊')
             with open ('Robot.json') as source:
               animation=json.load (source)
             st.lottie(animation,width =350)
         elif x >=-1 and x < 0:
-            st.write( 'Es un sentimiento Negativo 😔')
+            st.write( 'El robot de broncineas trenzas detecto que escribiste algo negativo 😔')
             with open ('bad emoji.json') as source:
               animation=json.load (source)
             st.lottie(animation,width =350)
         else:
-            st.write( 'Es un sentimiento Neutral 😐')
+            st.write( 'Parece ser que el robot carisimo del internet no detecta ninguna emoción, es decir, neutral 😐')
             with open ('Neutral face.json') as source:
               animation=json.load (source)
             st.lottie(animation,width =350)
