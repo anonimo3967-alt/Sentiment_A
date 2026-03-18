@@ -9,8 +9,7 @@ import json
 st.title('Análisis de Sentimiento')
 image = Image.open('Sentiment.jpg')
 st.image(image)
-st.subheader("Escribe en el campo el texto para que la programación haga sus cosas y te diga si la
-frase es feliz (positiva) o triste (negativa) o neutral")
+st.subheader("Escribe en el campo el texto para que la programación haga sus cosas y te diga si la frase es feliz (positiva) o triste (negativa) o neutral")
 
 translator = Translator()
 
