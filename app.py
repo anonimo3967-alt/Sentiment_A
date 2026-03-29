@@ -6,7 +6,7 @@ from googletrans import Translator
 from streamlit_lottie import st_lottie
 import json
 
-st.title('Análisis de Sentimiento')
+st.title('Análisis sentimental')
 image = Image.open('Sentiment.jpg')
 st.image(image)
 st.subheader("Escribe en el campo el texto para que la programación haga sus cosas y te diga si la frase es feliz (positiva) o triste (negativa) o neutral")
@@ -16,11 +16,10 @@ translator = Translator()
 with st.sidebar:
                st.subheader("Polaridad y Subjetividad")
                ("""
-                Polaridad: Indica si el sentimiento expresado en el texto es positivo, negativo o neutral. 
-                Su valor oscila entre -1 (muy negativo) y 1 (muy positivo), con 0 representando un sentimiento neutral.
+                Polaridad: es un número que va del -1 al 1 e indica si tu mensaje es terriblemente pesimista o se encuentra en la
+                dictadura del positivismo (-1 para negativo, 1 para positivo y 0 para neutral)
                 
-               Subjetividad: Mide cuánto del contenido es subjetivo (opiniones, emociones, creencias) frente a objetivo
-               (hechos). Va de 0 a 1, donde 0 es completamente objetivo y 1 es completamente subjetivo.
+               Subjetividad: mide que tan objetivo eres. 0 es realmente objetivo y 1 es muy, muy subjetivo
 
                  """
                ) 
@@ -35,6 +34,7 @@ with st.expander('Analizar texto'):
         st.write('Polaridad: ', round(blob.sentiment.polarity,2))
         st.write('Subjetividad: ', round(blob.sentiment.subjectivity,2))
         x=round(blob.sentiment.polarity,2)
+        y=round(blob.sentiment.subjectivity,2)
         if x > 0.0 and x <=1.0:
             st.write( 'El robot de divinal inteligencia detecto que escribiste algo positivo 😊')
             with open ('Robot.json') as source:
@@ -48,5 +48,11 @@ with st.expander('Analizar texto'):
         else:
             st.write( 'Parece ser que el robot carisimo del internet no detecta ninguna emoción, es decir, neutral 😐')
             with open ('Neutral face.json') as source:
+              animation=json.load (source)
+            st.lottie(animation,width =350)
+
+        if y > 0.0 and y <= 0.5:
+          st.write('Parece ser que eres bastante objetivo... Es una forma de ver la vida, pero recuerda que no hay tal cosa como la realidad')
+          with open ('Neutral face.json') as source:
               animation=json.load (source)
             st.lottie(animation,width =350)
