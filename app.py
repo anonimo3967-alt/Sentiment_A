@@ -53,6 +53,12 @@ with st.expander('Analizar texto'):
 
         if y > 0.0 and y <= 0.5:
           st.write('Parece ser que eres bastante objetivo... Es una forma de ver la vida, pero recuerda que no hay tal cosa como la realidad')
-          with open ('Neutral face.json') as source:
+          with open ('Thinking Emoji.json') as source:
+              animation=json.load (source)
+            st.lottie(animation,width =350)
+
+        elif y >= 0.6 and y <= 1.0:
+          st.write('Estas más en el lado de la subjetividad. No te preocupes, todos somos subjetivos en algún punto de nuestras vidas...')
+          with open ('Dumb.json') as source:
               animation=json.load (source)
             st.lottie(animation,width =350)
